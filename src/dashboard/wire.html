@@ -85,7 +85,24 @@
         <!-- BOX 4 -->
 
         <div id="box4" class="hidebox">
-            <h3 style="text-align: center; margin-top: 10%;">Enter <strong id="ttl">IMF</strong> Code To Continue</h3>
+            <h3 style="text-align: center; margin-top: 10%;">Enter <strong id="ttl">COT</strong> Code To Continue</h3>
+
+            <input autofocus class="inppt" type="text" name="cot" id="cot" />
+
+            <div class="butttn">
+                <button id="closs33" class="button button3">Cancel</button>
+
+                <button id="send3" class="button button1">Verify</button>
+            </div>
+            <p style="margin-bottom: 10%; margin-left: 10%; margin-right: 10%; ">Don't have <strong
+                    id="ttl2">COT</strong> code? contact our <a target="_blank" href="../contact/index.html"><strong>Team</strong></a>
+                for guidance</p>
+        </div>
+
+        <!-- BOX 5 -->
+
+        <div id="box5" class="hidebox">
+            <h3 style="text-align: center; margin-top: 10%;">Enter <strong id="">IMF</strong> Code To Continue</h3>
 
             <input autofocus class="inppt" type="text" name="imf" id="imf" />
 
@@ -95,24 +112,7 @@
                 <button id="send2" class="button button1">Verify</button>
             </div>
             <p style="margin-bottom: 10%; margin-left: 10%; margin-right: 10%; ">Don't have <strong
-                    id="ttl2">IMF</strong> code? contact our <a target="_blank" href="../contact/index.html"><strong>Team</strong></a>
-                for guidance</p>
-        </div>
-
-        <!-- BOX 5 -->
-
-        <div id="box5" class="hidebox">
-            <h3 style="text-align: center; margin-top: 10%;">Enter <strong id="">TAX</strong> Code To Continue</h3>
-
-            <input autofocus class="inppt" type="text" name="tax" id="tax" />
-
-            <div class="butttn">
-                <button id="closs33" class="button button3">Cancel</button>
-
-                <button id="send3" class="button button1">Verify</button>
-            </div>
-            <p style="margin-bottom: 10%; margin-left: 10%; margin-right: 10%; ">Don't have <strong
-                    id="">TAX</strong> code? contact our <a href="../contact/index.html"><strong>Team</strong></a>
+                    id="">IMF</strong> code? contact our <a href="../contact/index.html"><strong>Team</strong></a>
                 for guidance</p>
         </div>
 
@@ -120,9 +120,9 @@
         <!-- BOX 6 -->
 
         <div id="box6" class="hidebox">
-            <h3 style="text-align: center; margin-top: 10%;">Enter <strong id="">COT</strong> Code To Continue</h3>
+            <h3 style="text-align: center; margin-top: 10%;">Enter <strong id="">TAX</strong> Code To Continue</h3>
 
-            <input autofocus class="inppt" type="text" name="cot" id="cot" />
+            <input autofocus class="inppt" type="text" name="tax" id="tax" />
 
             <div class="butttn">
                 <button id="closs33" class="button button3">Cancel</button>
@@ -130,7 +130,7 @@
                 <button id="send4" class="button button1">Verify</button>
             </div>
             <p style="margin-bottom: 10%; margin-left: 10%; margin-right: 10%; ">Don't have <strong
-                    id="">COT</strong> code? contact our <a href="../contact/index.html"><strong>Team</strong></a>
+                    id="">TAX</strong> code? contact our <a href="../contact/index.html"><strong>Team</strong></a>
                 for guidance</p>
         </div>
 
@@ -598,10 +598,11 @@
 
                 document.getElementById('send2').addEventListener('click', () => {
                    
+
                     getDoc(doc(db, "users", user.email)).then(docSnapc => {
 
                         if (docSnapc.data().IMF === document.getElementById("imf").value) {
-                            document.getElementById('box4').classList.replace("box4", "hidebox");
+                            document.getElementById('box5').classList.replace("box4", "hidebox");
                             document.getElementById('box3').classList.replace("hidebox", "box3");
                             document.getElementById("imf").value = "";
 
@@ -611,11 +612,11 @@
                             const countInterval2 = setInterval(count, 2090);
                             function count() {
                                 document.getElementById("percent").innerHTML = counter++;
-                                if (counter > 67) {
+                                if (counter > 91) {
                                    
                                     
                                     document.getElementById('box3').classList.replace("box3", "hidebox");
-                                    document.getElementById('box5').classList.replace("hidebox", "box4");
+                                    document.getElementById('box6').classList.replace("hidebox", "box4");
 
                                     clearInterval(countInterval);
                                     clearInterval(countInterval2);
@@ -632,8 +633,8 @@
                 document.getElementById('send3').addEventListener('click', () => {
                     getDoc(doc(db, "users", user.email)).then(docSnapc => {
 
-                        if (docSnapc.data().TAX === document.getElementById("tax").value) {
-                            document.getElementById('box5').classList.replace("box4", "hidebox");
+                        if (docSnapc.data().COT === document.getElementById("cot").value) {
+                            document.getElementById('box4').classList.replace("box4", "hidebox");
                             document.getElementById('box3').classList.replace("hidebox", "box3");
                           
 
@@ -643,16 +644,20 @@
                             const countInterval2 = setInterval(count, 2090);
                             function count() {
                                 document.getElementById("percent").innerHTML = counter++;
-                                if (counter > 92) {
+                                if (counter > 68) {
+                                    
+
                                     document.getElementById('box3').classList.replace("box3", "hidebox");
-                                    document.getElementById('box6').classList.replace("hidebox", "box4");
+                                    document.getElementById('box5').classList.replace("hidebox", "box4");
+
+                                   
 
                                     clearInterval(countInterval);
                                     clearInterval(countInterval2);
                                 }
                             }
                         } else {
-                            notyf.error('incorrect TAX code');
+                            notyf.error('incorrect COT code');
                         }
                     })
 
@@ -661,7 +666,7 @@
                 document.getElementById('send4').addEventListener('click', () => {
                     getDoc(doc(db, "users", user.email)).then(docSnapc => {
 
-                        if (docSnapc.data().COT === document.getElementById("cot").value) {
+                        if (docSnapc.data().TAX === document.getElementById("tax").value) {
                             document.getElementById('box6').classList.replace("box4", "hidebox");
                             document.getElementById('box3').classList.replace("hidebox", "box3");
                           
@@ -724,7 +729,7 @@
                                     }
                                 }
                             } else {
-                                notyf.error('incorrect COT code');
+                                notyf.error('incorrect TAX code');
                             }
                                     })
 
