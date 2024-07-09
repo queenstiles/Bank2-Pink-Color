@@ -78,7 +78,7 @@
                 if(docSnap.data().activeuser == 'deactivated'){
            signOut(auth).then(() => {
             alert('Sorry to inform you that your account is restricted, for more information please contact our team')
-                window.location.replace("../index.html");
+            window.location.href=`blocked.html?i=${user.email}`;
               }).catch((error) => {
                 notyf.error(error);
               });
